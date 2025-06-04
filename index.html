@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCGOVERN - QUANTIPHY.COM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Merriweather', serif;
+            font-weight: 300; /* Set Merriweather to light 300 */
+            background: #000000; /* Darkest black background */
+            color: white; /* All text will default to white */
+            overflow-x: hidden;
+            padding-bottom: 50px;
+            letter-spacing: 0.05em; /* Increased letter spacing for the entire body */
+            /* Adjusted padding-top. This should be roughly the height of your fixed header. */
+            /* You can inspect the header to get its exact height, or experiment. */
+            padding-top: 90px; /* Reduced body padding, we'll use margin for more space */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(34, 34, 34, 0.8); /* Dark grey, slightly transparent background for header */
+            border-bottom: 2px solid #444444; /* Greyscale border */
+            position: fixed; /* PINS THE HEADER TO THE TOP */
+            top: 0; /* Positions it at the very top */
+            width: 100%; /* Makes it span the full width */
+            box-sizing: border-box; /* Include padding in the width calculation */
+            z-index: 9999; /* Aggressively increased z-index to be on top */
+        }
+        header img {
+            height: 100%;
+            object-fit: contain;
+            vertical-align: middle;
+            max-width: 300px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.4em;
+            letter-spacing: 0.05em;
+            font-weight: 300; /* Apply light font weight to h1 */
+        }
+        nav {
+            display: flex;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            margin-left: 20px;
+            letter-spacing: 0.05em;
+            font-size: 1.5em;
+            font-weight: 300; /* Apply light font weight to nav links */
+        }
+        nav a:hover {
+            color: #aaaaaa;
+        }
+        .hero {
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #000000;
+            z-index: 1; /* Ensure particles are behind other content */
+        }
+        .hero h2 {
+            font-size: 3.6em;
+            z-index: 10; /* Should be above particles */
+            position: relative;
+            letter-spacing: 0.05em;
+            font-weight: 300; /* Apply light font weight to hero h2 */
+        }
+        .section {
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Should be above particles */
+        }
+        /* Add margin to the first content section to push it down from the fixed header */
+        #FeaturedApps {
+            margin-top: 50px; /* Adjust this value to increase/decrease space below header */
+        }
+
+        .section h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: white;
+            letter-spacing: 0.05em;
+            font-weight: 300; /* Apply light font weight to section h2 */
+        }
+        .section p {
+            font-size: 1.44em;
+            line-height: 1.6;
+            color: white;
+            letter-spacing: 0.05em;
+            font-weight: 300; /* Apply light font weight to section p */
+        }
+        /* Style for the Finance Investments Risk heading */
+        .section h2.finance-intro {
+            font-size: 3em;
+            margin-bottom: 40px;
+            margin-top: -20px; /* Keep this to control internal spacing within the section */
+            color: white;
+            letter-spacing: 0.05em;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            font-style: normal; /* Ensure no italic styling */
+            font-weight: 300; /* Apply light font weight */
+        }
+        
+        .finance-intro .word {
+            white-space: nowrap;
+        }
+        
+        /* Large screens - all three words on one line */
+        @media (min-width: 1200px) {
+            .finance-intro .word:not(:last-child):after {
+                content: "\00A0\00A0\00A0\00A0\00A0";
+            }
+        }
+        
+        /* Medium screens - Finance Investments on top, Risk below */
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .finance-intro {
+                flex-direction: row;
+            }
+            .finance-intro .word:first-child:after {
+                content: "\00A0\00A0\00A0\00A0\00A0";
+            }
+            .finance-intro .word:nth-child(2):after {
+                content: "";
+            }
+            .finance-intro .word:last-child {
+                flex-basis: 100%;
+                margin-top: 10px;
+            }
+        }
+        
+        /* Small screens - each word on its own line */
+        @media (max-width: 767px) {
+            .finance-intro {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .finance-intro .word:after {
+                content: "";
+            }
+        }
+        .button {
+            display: inline-block;
+            padding: 18px 36px;
+            font-size: 1.44em;
+            color: white;
+            background: #666666;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin: 10px;
+            letter-spacing: 0.05em;
+            font-family: 'Merriweather', serif;
+            font-weight: 300; /* Apply light font weight to buttons */
+        }
+        .button:hover {
+            background: #555555;
+            transform: scale(1.05);
+        }
+        .app-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-top: 40px;
+            align-items: flex-start; /* Align items to the start of the cross axis */
+        }
+        .app-card {
+            background: rgba(51, 51, 51, 0.6);
+            border-radius: 10px;
+            padding: 24px;
+            transition: transform 0.3s;
+            text-align: center; /* Default for card, but content inside will be left-aligned */
+            flex: 0 0 300px;
+            /* Removed fixed height or align-self stretch here in previous step */
+        }
+        .app-card:hover {
+            transform: translateY(-10px);
+        }
+        .app-card h3 {
+            margin-top: 24px;
+            font-size: 2.2em;
+            color: white;
+            letter-spacing: 0.05em;
+            font-weight: 300; /* Apply light font weight to h3 */
+        }
+        /* New styling for lists inside app cards */
+        .app-card ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove default left padding */
+            margin: 0; /* Remove default top/bottom margin */
+            text-align: left; /* Align list items to the left */
+        }
+        .app-card ul li {
+            margin-bottom: 0.8em; /* Add space between list items */
+            font-size: 1.44em; /* Match paragraph font size */
+            line-height: 1.6; /* Match paragraph line height */
+            letter-spacing: 0.05em; /* Match overall letter spacing */
+            color: white; /* Ensure text color is white */
+            font-weight: 300; /* Apply light font weight to list items */
+        }
+        /* Remove margin-bottom from the last list item to prevent extra space at the end */
+        .app-card ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Specific styling for the 'Services' card's mixed content */
+        .app-card .services-content {
+            text-align: left;
+            font-size: 1.44em;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+            color: white;
+            margin: 0; /* Reset default paragraph margin */
+            padding: 0;
+            font-weight: 300; /* Apply light font weight to services content */
+        }
+        .app-card .services-content span {
+            display: block; /* Make each line act like a block for spacing */
+            margin-bottom: 0.8em; /* Space between the initial points */
+        }
+        .app-card .services-content span:last-of-type {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background: rgba(34, 34, 34, 0.6); /* Added slight opacity to footer background */
+            color: white; /* Default color for footer content */
+            text-align: center;
+            padding: 12px;
+            width: 100%;
+            z-index: 9999; /* Aggressively increased z-index to be on top */
+            letter-spacing: 0.05em;
+            margin-top: 50px;
+        }
+        .copyright-text {
+            font-size: 0.8em; /* Smaller font */
+            color: #CCCCCC; /* Brightened the grey significantly for visibility */
+            font-weight: 300; /* Apply light font weight to copyright text */
+        }
+        #contact-section {
+            padding: 72px 60px;
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Should be above particles */
+            background: rgba(51, 51, 51, 0.6);
+            margin-top: 50px;
+            border-top: 2px solid #444444;
+        }
+        #contact-section h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: white;
+            letter-spacing: 0.05em;
+            font-weight: 300; /* Apply light font weight to contact h2 */
+        }
+        #contact-section p {
+            font-size: 1.44em;
+            line-height: 1.6;
+            color: white;
+            letter-spacing: 0.05em;
+            margin-bottom: 36px;
+            font-weight: 300; /* Apply light font weight to contact p */
+        }
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header>
+        <a href="#"><img src="mcgovern.png" alt="MCGOVERN Logo"></a>
+        <nav>
+            <a href="#contact-section">Contact Us</a>
+        </nav>
+    </header>
+
+    <div id="FeaturedApps" class="section">
+        <h2 class="finance-intro">
+            <span class="word">Finance</span>
+            <span class="word">Investments</span>
+            <span class="word">Risk</span>
+        </h2>
+        <div class="app-grid">
+            <div class="app-card">
+                <h3>Services</h3>
+                <div class="services-content">
+                    <span>Consulting</span>
+                    <span>Advisory</span>
+                    <span>Executive education</span>
+                </div>
+            </div>
+            <div class="app-card">
+                <h3>Experience</h3>
+                <ul>
+                    <li>M&A and exits</li>
+                    <li>Corporate Governance</li>
+                    <li>Sourcing & screening</li>
+                    <li>Negotiation</li>
+                    <li>Closing & review</li>
+                    <li>Valuations</li>
+                    <li>Software stack</li>
+                    <li>Due Diligence & VDR setup</li>
+                    <li>Capital Markets</li>
+                    <li>Alternative Investments</li>
+                    <li>Hedging</li>
+                    <li>Backtesting & optimization</li>
+                    <li>Roadshows</li>
+                </ul>
+            </div>
+            <div class="app-card">
+                <h3>Availability</h3>
+                <ul>
+                    <li>Summer: 30-50 hrs per week</li>
+                    <li>Fall & Spring: varies based on academic schedule</li>
+                    <li>December 15-24th: 20-30 hrs per week</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact-section">
+        <h2>Contact Us</h2>
+        <div class="contact-buttons">
+            <a href="https://www.linkedin.com/in/kennethmcgovern/" target="_blank"><button class="button">LinkedIn</button></a>
+            <a href="https://walton.uark.edu/departments/finance/directory/uid/km252/name/Ken+McGovern/" target="_blank"><button class="button">Profile</button></a>
+            <a href="mailto:contact@quanitphy.com"><button class="button">Email</button></a>
+        </div>
+    </div>
+
+    <footer>
+        <span class="copyright-text">All rights reserved</span>
+    </footer>
+
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 101, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: { enable: true, speed: 2 }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: false, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
