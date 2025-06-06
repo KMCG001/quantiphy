@@ -17,13 +17,11 @@
             overflow-x: hidden;
             padding-bottom: 50px;
             letter-spacing: 0.05em; /* Increased letter spacing for the entire body */
-            /* Adjusted padding-top. This should be roughly the height of your fixed header. */
-            /* You can inspect the header to get its exact height, or experiment. */
             padding-top: 90px; /* Reduced body padding, we'll use margin for more space */
         }
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Pushes logo to left, nav to right */
             align-items: center;
             padding: 20px 50px;
             background: rgba(34, 34, 34, 0.8); /* Dark grey, slightly transparent background for header */
@@ -33,12 +31,16 @@
             width: 100%; /* Makes it span the full width */
             box-sizing: border-box; /* Include padding in the width calculation */
             z-index: 9999; /* Aggressively increased z-index to be on top */
+            flex-wrap: nowrap; /* Prevent wrapping by default */
         }
         header img {
             height: 100%;
             object-fit: contain;
             vertical-align: middle;
             max-width: 300px;
+            width: 80%; /* Start with a fluid width */
+            min-width: 100px; /* Adjusted min-width for better scaling */
+            flex-shrink: 0; /* Prevent the image from shrinking too much */
         }
         header h1 {
             margin: 0;
@@ -48,6 +50,7 @@
         }
         nav {
             display: flex;
+            flex-shrink: 0; /* Prevent the nav from shrinking too much */
         }
         nav a {
             color: white;
@@ -57,6 +60,7 @@
             letter-spacing: 0.05em;
             font-size: 1.5em;
             font-weight: 300; /* Apply light font weight to nav links */
+            white-space: nowrap; /* Prevent "Contact Us" from wrapping */
         }
         nav a:hover {
             color: #aaaaaa;
@@ -199,7 +203,6 @@
             transition: transform 0.3s;
             text-align: center; /* Default for card, but content inside will be left-aligned */
             flex: 0 0 300px;
-            /* Removed fixed height or align-self stretch here in previous step */
         }
         .app-card:hover {
             transform: translateY(-10px);
@@ -294,6 +297,52 @@
             justify-content: center;
             gap: 24px;
             flex-wrap: wrap;
+        }
+
+        /* --- Responsive Adjustments for Navbar --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px; /* Adjust padding for smaller screens */
+            }
+
+            header img {
+                max-width: 150px; /* Make logo smaller on small devices */
+                min-width: 80px; /* Ensure it doesn't disappear */
+            }
+
+            nav a {
+                margin-left: 10px; /* Reduce margin between nav links */
+                font-size: 1.1em; /* Smaller font for nav links */
+                padding: 5px 10px; /* Add some padding to the link for better tap target */
+            }
+            /* No change to body padding-top needed as header does not stack */
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 15px; /* Even tighter padding for very small screens */
+            }
+            header img {
+                max-width: 120px; /* Even smaller logo */
+                min-width: 70px; /* Ensure it stays visible */
+            }
+            nav a {
+                font-size: 0.9em; /* Even smaller font for nav links */
+                margin-left: 5px; /* Minimal margin */
+            }
+            .section {
+                padding: 30px 15px; /* Reduce section padding */
+            }
+            .section h2, .hero h2, #contact-section h2 {
+                font-size: 1.8em; /* Smaller headings on very small devices */
+            }
+            .section p, .app-card ul li, .app-card .services-content, .button {
+                font-size: 0.9em; /* Smaller body text and button text */
+            }
+            .app-card {
+                flex: 0 0 95%; /* Allow app cards to take more width on tiny screens */
+                margin-bottom: 20px; /* Add some space between stacked cards */
+            }
         }
     </style>
 </head>
