@@ -42,12 +42,6 @@
             min-width: 100px;
             flex-shrink: 0;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.4em;
-            letter-spacing: 0.05em;
-            font-weight: 300;
-        }
         nav {
             display: flex;
             flex-shrink: 0;
@@ -65,14 +59,6 @@
         nav a:hover {
             color: #aaaaaa;
         }
-        .hero {
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
         #particles-js {
             position: fixed;
             width: 100%;
@@ -81,13 +67,6 @@
             left: 0;
             background-color: #000000;
             z-index: 1;
-        }
-        .hero h2 {
-            font-size: 3.6em;
-            z-index: 10;
-            position: relative;
-            letter-spacing: 0.05em;
-            font-weight: 300;
         }
         .section {
             padding: 60px 50px;
@@ -98,40 +77,28 @@
         #FeaturedApps {
             margin-top: 50px;
         }
-        .section h2 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: white;
-            letter-spacing: 0.05em;
-            font-weight: 300;
-        }
-        .section p {
-            font-size: 1.44em;
-            line-height: 1.6;
-            color: white;
-            letter-spacing: 0.05em;
-            font-weight: 300;
-        }
         .tagline {
-            font-size: 1.3em;
-            color: #cccccc;
-            letter-spacing: 0.08em;
-            margin-top: -10px;
-            margin-bottom: 6px;
-            font-weight: 300;
+            font-size: 1.6em;
+            color: #ffffff;
+            letter-spacing: 0.15em;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-weight: 400;
             font-style: italic;
+            text-shadow: 0 0 30px rgba(255,255,255,0.3);
         }
         .tagline-sub {
-            font-size: 1.1em;
-            color: #aaaaaa;
-            letter-spacing: 0.08em;
-            margin-bottom: 40px;
+            font-size: 1.15em;
+            color: #bbbbbb;
+            letter-spacing: 0.12em;
+            margin-bottom: 50px;
             font-weight: 300;
+            text-transform: uppercase;
         }
         .section h2.finance-intro {
             font-size: 3em;
             margin-bottom: 40px;
-            margin-top: -20px;
+            margin-top: 0;
             color: white;
             letter-spacing: 0.05em;
             text-align: center;
@@ -205,20 +172,22 @@
         .app-card {
             background: rgba(51, 51, 51, 0.6);
             border-radius: 10px;
-            padding: 24px;
+            padding: 36px 48px;
             transition: transform 0.3s;
             text-align: center;
-            flex: 0 0 300px;
+            flex: 0 0 420px;
         }
         .app-card:hover {
             transform: translateY(-10px);
         }
         .app-card h3 {
-            margin-top: 24px;
+            margin-top: 0;
+            margin-bottom: 24px;
             font-size: 2.2em;
             color: white;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             font-weight: 300;
+            text-transform: uppercase;
         }
         .app-card ul {
             list-style: none;
@@ -227,15 +196,19 @@
             text-align: left;
         }
         .app-card ul li {
-            margin-bottom: 0.8em;
+            margin-bottom: 0.9em;
             font-size: 1.44em;
             line-height: 1.6;
             letter-spacing: 0.05em;
-            color: white;
+            color: #dddddd;
             font-weight: 300;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 0.9em;
         }
         .app-card ul li:last-child {
             margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
         }
         footer {
             background: rgba(34, 34, 34, 0.6);
@@ -266,14 +239,6 @@
             margin-bottom: 20px;
             color: white;
             letter-spacing: 0.05em;
-            font-weight: 300;
-        }
-        #contact-section p {
-            font-size: 1.44em;
-            line-height: 1.6;
-            color: white;
-            letter-spacing: 0.05em;
-            margin-bottom: 36px;
             font-weight: 300;
         }
         .contact-buttons {
@@ -311,7 +276,7 @@
             .section {
                 padding: 30px 15px;
             }
-            .section h2, .hero h2, #contact-section h2 {
+            .section h2, #contact-section h2 {
                 font-size: 1.8em;
             }
             .section p, .app-card ul li, .button {
@@ -319,6 +284,7 @@
             }
             .app-card {
                 flex: 0 0 95%;
+                padding: 24px;
                 margin-bottom: 20px;
             }
         }
@@ -373,26 +339,29 @@
     <script>
         particlesJS('particles-js', {
             particles: {
-                number: { value: 101, density: { enable: true, value_area: 800 } },
+                number: { value: 80, density: { enable: true, value_area: 900 } },
                 color: { value: "#ffffff" },
                 shape: { type: "circle" },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
+                opacity: { value: 0.6, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.2, sync: false } },
+                size: { value: 2, random: true },
                 line_linked: {
                     enable: true,
-                    distance: 150,
+                    distance: 140,
                     color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1
+                    opacity: 0.25,
+                    width: 0.8
                 },
-                move: { enable: true, speed: 2 }
+                move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out" }
             },
             interactivity: {
                 detect_on: "canvas",
                 events: {
                     onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: false, mode: "push" },
+                    onclick: { enable: false },
                     resize: true
+                },
+                modes: {
+                    grab: { distance: 180, line_linked: { opacity: 0.6 } }
                 }
             },
             retina_detect: true
