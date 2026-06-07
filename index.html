@@ -1,371 +1,481 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="logo.ico">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCGOVERN - QUANTIPHY.COM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Merriweather', serif;
-            font-weight: 300;
-            background: #000000;
-            color: white;
-            overflow-x: hidden;
-            padding-bottom: 50px;
-            letter-spacing: 0.05em;
-            padding-top: 90px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background: rgba(34, 34, 34, 0.8);
-            border-bottom: 2px solid #444444;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            box-sizing: border-box;
-            z-index: 9999;
-            flex-wrap: nowrap;
-        }
-        header img {
-            height: 100%;
-            object-fit: contain;
-            vertical-align: middle;
-            max-width: 300px;
-            width: 80%;
-            min-width: 100px;
-            flex-shrink: 0;
-        }
-        nav {
-            display: flex;
-            flex-shrink: 0;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            margin-left: 20px;
-            letter-spacing: 0.05em;
-            font-size: 1.5em;
-            font-weight: 300;
-            white-space: nowrap;
-        }
-        nav a:hover {
-            color: #aaaaaa;
-        }
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #000000;
-            z-index: 1;
-        }
-        .section {
-            padding: 60px 50px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-        #FeaturedApps {
-            margin-top: 50px;
-        }
-        .tagline {
-            font-size: 1.6em;
-            color: #ffffff;
-            letter-spacing: 0.15em;
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-weight: 400;
-            font-style: italic;
-            text-shadow: 0 0 30px rgba(255,255,255,0.3);
-        }
-        .tagline-sub {
-            font-size: 1.15em;
-            color: #bbbbbb;
-            letter-spacing: 0.12em;
-            margin-bottom: 50px;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-        .section h2.finance-intro {
-            font-size: 3em;
-            margin-bottom: 40px;
-            margin-top: 0;
-            color: white;
-            letter-spacing: 0.05em;
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 0;
-            font-style: normal;
-            font-weight: 300;
-        }
-        .finance-intro .word {
-            white-space: nowrap;
-        }
-        @media (min-width: 1200px) {
-            .finance-intro .word:not(:last-child):after {
-                content: "\00A0\00A0\00A0\00A0\00A0";
-            }
-        }
-        @media (min-width: 768px) and (max-width: 1199px) {
-            .finance-intro {
-                flex-direction: row;
-            }
-            .finance-intro .word:first-child:after {
-                content: "\00A0\00A0\00A0\00A0\00A0";
-            }
-            .finance-intro .word:nth-child(2):after {
-                content: "";
-            }
-            .finance-intro .word:last-child {
-                flex-basis: 100%;
-                margin-top: 10px;
-            }
-        }
-        @media (max-width: 767px) {
-            .finance-intro {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .finance-intro .word:after {
-                content: "";
-            }
-        }
-        .button {
-            display: inline-block;
-            padding: 18px 36px;
-            font-size: 1.44em;
-            color: white;
-            background: #666666;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
-            margin: 10px;
-            letter-spacing: 0.05em;
-            font-family: 'Merriweather', serif;
-            font-weight: 300;
-        }
-        .button:hover {
-            background: #555555;
-            transform: scale(1.05);
-        }
-        .app-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 50px;
-            margin-top: 40px;
-            align-items: flex-start;
-        }
-        .app-card {
-            background: rgba(51, 51, 51, 0.6);
-            border-radius: 10px;
-            padding: 36px 48px;
-            transition: transform 0.3s;
-            text-align: center;
-            flex: 0 0 420px;
-        }
-        .app-card:hover {
-            transform: translateY(-10px);
-        }
-        .app-card h3 {
-            margin-top: 0;
-            margin-bottom: 24px;
-            font-size: 2.2em;
-            color: white;
-            letter-spacing: 0.08em;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-        .app-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-        .app-card ul li {
-            margin-bottom: 0.9em;
-            font-size: 1.44em;
-            line-height: 1.6;
-            letter-spacing: 0.05em;
-            color: #dddddd;
-            font-weight: 300;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding-bottom: 0.9em;
-        }
-        .app-card ul li:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        footer {
-            background: rgba(34, 34, 34, 0.6);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            width: 100%;
-            z-index: 9999;
-            letter-spacing: 0.05em;
-            margin-top: 50px;
-        }
-        .copyright-text {
-            font-size: 0.8em;
-            color: #CCCCCC;
-            font-weight: 300;
-        }
-        #contact-section {
-            padding: 72px 60px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            background: rgba(51, 51, 51, 0.6);
-            margin-top: 50px;
-            border-top: 2px solid #444444;
-        }
-        #contact-section h2 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            color: white;
-            letter-spacing: 0.05em;
-            font-weight: 300;
-        }
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            header img {
-                max-width: 150px;
-                min-width: 80px;
-            }
-            nav a {
-                margin-left: 10px;
-                font-size: 1.1em;
-                padding: 5px 10px;
-            }
-        }
-        @media (max-width: 480px) {
-            header {
-                padding: 10px 15px;
-            }
-            header img {
-                max-width: 120px;
-                min-width: 70px;
-            }
-            nav a {
-                font-size: 0.9em;
-                margin-left: 5px;
-            }
-            .section {
-                padding: 30px 15px;
-            }
-            .section h2, #contact-section h2 {
-                font-size: 1.8em;
-            }
-            .section p, .app-card ul li, .button {
-                font-size: 0.9em;
-            }
-            .app-card {
-                flex: 0 0 95%;
-                padding: 24px;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+<link rel="icon" type="image/x-icon" href="logo.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCGOVERN - QUANTIPHY.COM</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+<style>
+body {
+margin: 0;
+font-family: 'Merriweather', serif;
+font-weight: 300;
+background: #000000;
+color: white;
+overflow-x: hidden;
+padding-bottom: 50px;
+letter-spacing: 0.05em;
+padding-top: 90px;
+}
+header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 50px;
+background: rgba(34, 34, 34, 0.8);
+border-bottom: 2px solid #444444;
+position: fixed;
+top: 0;
+width: 100%;
+box-sizing: border-box;
+z-index: 9999;
+flex-wrap: nowrap;
+}
+header img {
+height: 100%;
+object-fit: contain;
+vertical-align: middle;
+max-width: 300px;
+width: 80%;
+min-width: 100px;
+flex-shrink: 0;
+}
+nav {
+display: flex;
+flex-shrink: 0;
+}
+nav a {
+color: white;
+text-decoration: none;
+transition: color 0.3s ease;
+margin-left: 20px;
+letter-spacing: 0.05em;
+font-size: 1.5em;
+font-weight: 300;
+white-space: nowrap;
+}
+nav a:hover {
+color: #aaaaaa;
+}
+#particles-js {
+position: fixed;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+background-color: #000000;
+z-index: 1;
+}
+.section {
+padding: 60px 50px;
+text-align: center;
+position: relative;
+z-index: 10;
+}
+#FeaturedApps {
+margin-top: 50px;
+}
+.tagline {
+font-size: 1.6em;
+color: #ffffff;
+letter-spacing: 0.15em;
+margin-top: 0;
+margin-bottom: 12px;
+font-weight: 400;
+font-style: italic;
+text-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+.tagline-sub {
+font-size: 1.15em;
+color: #bbbbbb;
+letter-spacing: 0.12em;
+margin-bottom: 50px;
+font-weight: 300;
+text-transform: uppercase;
+}
+.section h2.finance-intro {
+font-size: 3em;
+margin-bottom: 40px;
+margin-top: 0;
+color: white;
+letter-spacing: 0.05em;
+text-align: center;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 0;
+font-style: normal;
+font-weight: 300;
+}
+.finance-intro .word {
+white-space: nowrap;
+}
+@media (min-width: 1200px) {
+.finance-intro .word:not(:last-child):after {
+content: "\00A0\00A0\00A0\00A0\00A0";
+}
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+.finance-intro {
+flex-direction: row;
+}
+.finance-intro .word:first-child:after {
+content: "\00A0\00A0\00A0\00A0\00A0";
+}
+.finance-intro .word:nth-child(2):after {
+content: "";
+}
+.finance-intro .word:last-child {
+flex-basis: 100%;
+margin-top: 10px;
+}
+}
+@media (max-width: 767px) {
+.finance-intro {
+flex-direction: column;
+gap: 10px;
+}
+.finance-intro .word:after {
+content: "";
+}
+}
+.button {
+display: inline-block;
+padding: 18px 36px;
+font-size: 1.44em;
+color: white;
+background: #666666;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background 0.3s, transform 0.3s;
+margin: 10px;
+letter-spacing: 0.05em;
+font-family: 'Merriweather', serif;
+font-weight: 300;
+}
+.button:hover {
+background: #555555;
+transform: scale(1.05);
+}
+.button.amazon {
+background: #b35a00;
+}
+.button.amazon:hover {
+background: #8f4800;
+}
+.app-grid {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 50px;
+margin-top: 40px;
+align-items: flex-start;
+}
+.app-card {
+background: rgba(51, 51, 51, 0.6);
+border-radius: 10px;
+padding: 36px 48px;
+transition: transform 0.3s;
+text-align: center;
+flex: 0 0 420px;
+}
+.app-card:hover {
+transform: translateY(-10px);
+}
+.app-card h3 {
+margin-top: 0;
+margin-bottom: 24px;
+font-size: 2.2em;
+color: white;
+letter-spacing: 0.08em;
+font-weight: 300;
+text-transform: uppercase;
+}
+.app-card ul {
+list-style: none;
+padding: 0;
+margin: 0;
+text-align: left;
+}
+.app-card ul li {
+margin-bottom: 0.9em;
+font-size: 1.44em;
+line-height: 1.6;
+letter-spacing: 0.05em;
+color: #dddddd;
+font-weight: 300;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+padding-bottom: 0.9em;
+}
+.app-card ul li:last-child {
+margin-bottom: 0;
+border-bottom: none;
+padding-bottom: 0;
+}
+
+/* ── Book Section ── */
+#book-section {
+padding: 72px 60px;
+text-align: center;
+position: relative;
+z-index: 10;
+background: rgba(51, 51, 51, 0.4);
+margin-top: 50px;
+border-top: 2px solid #444444;
+border-bottom: 2px solid #444444;
+}
+#book-section h2 {
+font-size: 3em;
+margin-bottom: 40px;
+color: white;
+letter-spacing: 0.05em;
+font-weight: 300;
+}
+.book-layout {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 60px;
+flex-wrap: wrap;
+}
+.book-cover {
+flex-shrink: 0;
+}
+.book-cover img {
+width: 180px;
+border-radius: 4px;
+box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+transition: transform 0.3s;
+}
+.book-cover img:hover {
+transform: scale(1.04);
+}
+.book-info {
+max-width: 480px;
+text-align: left;
+}
+.book-info h3 {
+font-size: 1.8em;
+font-weight: 400;
+letter-spacing: 0.08em;
+margin-top: 0;
+margin-bottom: 10px;
+color: #ffffff;
+}
+.book-info .book-subtitle {
+font-size: 1.15em;
+color: #aaaaaa;
+font-style: italic;
+margin-bottom: 24px;
+letter-spacing: 0.06em;
+}
+.book-info p {
+font-size: 1.1em;
+line-height: 1.8;
+color: #cccccc;
+margin-bottom: 30px;
+font-weight: 300;
+}
+.book-series-badge {
+display: inline-block;
+font-size: 0.85em;
+color: #aaaaaa;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin-bottom: 28px;
+border: 1px solid #555;
+padding: 5px 14px;
+border-radius: 20px;
+}
+@media (max-width: 768px) {
+.book-layout {
+flex-direction: column;
+align-items: center;
+}
+.book-info {
+text-align: center;
+}
+}
+/* ── end Book Section ── */
+
+footer {
+background: rgba(34, 34, 34, 0.6);
+color: white;
+text-align: center;
+padding: 12px;
+width: 100%;
+z-index: 9999;
+letter-spacing: 0.05em;
+margin-top: 50px;
+}
+.copyright-text {
+font-size: 0.8em;
+color: #CCCCCC;
+font-weight: 300;
+}
+#contact-section {
+padding: 72px 60px;
+text-align: center;
+position: relative;
+z-index: 10;
+background: rgba(51, 51, 51, 0.6);
+margin-top: 50px;
+border-top: 2px solid #444444;
+}
+#contact-section h2 {
+font-size: 3em;
+margin-bottom: 20px;
+color: white;
+letter-spacing: 0.05em;
+font-weight: 300;
+}
+.contact-buttons {
+display: flex;
+justify-content: center;
+gap: 24px;
+flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+header {
+padding: 15px 20px;
+}
+header img {
+max-width: 150px;
+min-width: 80px;
+}
+nav a {
+margin-left: 10px;
+font-size: 1.1em;
+padding: 5px 10px;
+}
+}
+@media (max-width: 480px) {
+header {
+padding: 10px 15px;
+}
+header img {
+max-width: 120px;
+min-width: 70px;
+}
+nav a {
+font-size: 0.9em;
+margin-left: 5px;
+}
+.section {
+padding: 30px 15px;
+}
+.section h2, #contact-section h2 {
+font-size: 1.8em;
+}
+.section p, .app-card ul li, .button {
+font-size: 0.9em;
+}
+.app-card {
+flex: 0 0 95%;
+padding: 24px;
+margin-bottom: 20px;
+}
+}
+</style>
 </head>
 <body>
-    <div id="particles-js"></div>
+<div id="particles-js"></div>
+<header>
+<a href="#"><img src="mcgovern.png" alt="MCGOVERN Logo"></a>
+<nav>
+<a href="#book-section">Book</a>
+<a href="#contact-section">Contact</a>
+</nav>
+</header>
 
-    <header>
-        <a href="#"><img src="mcgovern.png" alt="MCGOVERN Logo"></a>
-        <nav>
-            <a href="#contact-section">Contact</a>
-        </nav>
-    </header>
+<div id="FeaturedApps" class="section">
+<p class="tagline">Strategy. Team. Close.</p>
+<p class="tagline-sub">No close. No fee.</p>
+<h2 class="finance-intro">
+<span class="word">M&A</span>
+<span class="word">Capital Markets</span>
+<span class="word">Investments</span>
+</h2>
+<div class="app-grid">
+<div class="app-card">
+<h3>Advisory</h3>
+<ul>
+<li>M&A and Exits</li>
+<li>Capital Markets</li>
+<li>Alternative Investments</li>
+<li>Due Diligence & VDR</li>
+<li>Valuations</li>
+<li>Corporate Governance</li>
+</ul>
+</div>
+</div>
+</div>
 
-    <div id="FeaturedApps" class="section">
-        <p class="tagline">Strategy. Team. Close.</p>
-        <p class="tagline-sub">No close. No fee.</p>
-        <h2 class="finance-intro">
-            <span class="word">M&A</span>
-            <span class="word">Capital Markets</span>
-            <span class="word">Investments</span>
-        </h2>
-        <div class="app-grid">
-            <div class="app-card">
-                <h3>Advisory</h3>
-                <ul>
-                    <li>M&A and Exits</li>
-                    <li>Capital Markets</li>
-                    <li>Alternative Investments</li>
-                    <li>Due Diligence & VDR</li>
-                    <li>Valuations</li>
-                    <li>Corporate Governance</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+<!-- BOOK SECTION -->
+<div id="book-section">
+<h2>The Investor's Field Guide Series</h2>
+<div class="book-layout">
+<div class="book-cover">
+<a href="https://www.amazon.com/dp/B0H44FQXS9?binding=kindle_edition&qid=1780871400&sr=8-1&ref=dbs_dp_rwt_sb_pc_tkin" target="_blank">
+<img src="https://m.media-amazon.com/images/I/71HLk0OfF+L._UY450_FMwebp_.jpg" alt="The Investor's Field Guide - Math Primer">
+</a>
+</div>
+<div class="book-info">
+<span class="book-series-badge">Book 1 of the Series</span>
+<h3>The Investor's Field Guide</h3>
+<p class="book-subtitle">Math Primer</p>
+<p>A practical foundation in the quantitative tools every investor needs — written for clarity, built for real-world application. Available now on Amazon Kindle.</p>
+<a href="https://www.amazon.com/dp/B0H44FQXS9?binding=kindle_edition&qid=1780871400&sr=8-1&ref=dbs_dp_rwt_sb_pc_tkin" target="_blank">
+<button class="button amazon">Read on Kindle →</button>
+</a>
+</div>
+</div>
+</div>
 
-    <div id="contact-section">
-        <h2>Contact</h2>
-        <div class="contact-buttons">
-            <a href="https://www.linkedin.com/in/kennethmcgovern/" target="_blank"><button class="button">LinkedIn</button></a>
-            <a href="https://walton.uark.edu/departments/finance/directory/uid/km252/name/Ken+McGovern/" target="_blank"><button class="button">Profile</button></a>
-            <a href="https://calendly.com/km252-uark" target="_blank"><button class="button">Schedule a Call</button></a>
-        </div>
-    </div>
+<div id="contact-section">
+<h2>Contact</h2>
+<div class="contact-buttons">
+<a href="https://www.linkedin.com/in/kennethmcgovern/" target="_blank"><button class="button">LinkedIn</button></a>
+<a href="https://walton.uark.edu/departments/finance/directory/uid/km252/name/Ken+McGovern/" target="_blank"><button class="button">Profile</button></a>
+<a href="https://calendly.com/km252-uark" target="_blank"><button class="button">Schedule a Call</button></a>
+<a href="https://www.amazon.com/dp/B0H44FQXS9?binding=kindle_edition&qid=1780871400&sr=8-1&ref=dbs_dp_rwt_sb_pc_tkin" target="_blank"><button class="button amazon">Book</button></a>
+</div>
+</div>
 
-    <footer>
-        <span class="copyright-text">All rights reserved</span>
-    </footer>
+<footer>
+<span class="copyright-text">All rights reserved</span>
+</footer>
 
-    <script>
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 900 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.6, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.2, sync: false } },
-                size: { value: 2, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 140,
-                    color: "#ffffff",
-                    opacity: 0.25,
-                    width: 0.8
-                },
-                move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: false },
-                    resize: true
-                },
-                modes: {
-                    grab: { distance: 180, line_linked: { opacity: 0.6 } }
-                }
-            },
-            retina_detect: true
-        });
-    </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js';
+  s.onload = function() {
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 900 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.6, random: true, anim: { enable: true, speed: 0.8, opacity_min: 0.2, sync: false } },
+        size: { value: 2, random: true },
+        line_linked: { enable: true, distance: 140, color: "#ffffff", opacity: 0.25, width: 0.8 },
+        move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: false }, resize: true },
+        modes: { grab: { distance: 180, line_linked: { opacity: 0.6 } } }
+      },
+      retina_detect: true
+    });
+  };
+  document.head.appendChild(s);
+});
+</script>
 </body>
 </html>
